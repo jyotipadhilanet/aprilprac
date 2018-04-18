@@ -1,11 +1,11 @@
+import axios from 'axios'
 export const callApi1=()=>{
     return (dispatch) => {
-        return fetch('https://jsonplaceholder.typicode.com/posts')
-            .then(response => response.json())
-            .then(json => dispatch({type: "api1", payload: json}))
+        return axios.get('http://localhost:5000/fetch')
+            .then((success) => dispatch({type: "api1", payload: success.data}))
+            .catch((err) => console.log(err))
     }
 }
-
 export const callApi2=()=>{
     return (dispatch)=>{
         return  fetch('https://jsonplaceholder.typicode.com/comments')

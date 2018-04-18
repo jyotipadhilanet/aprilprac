@@ -23,10 +23,8 @@ class Welcome extends Component {
                 {this.state.data1.map((v,i)=>{
                   return(
                       <tr>
-                          <td>{v.userId}</td>
-                          <td>{v.title}</td>
-                          <td>{v.body}</td>
-                          <td>{v.id}</td>
+                          <td>{v.name}</td>
+                          <td>{v.username}</td>
                       </tr>
                   )
                 })}

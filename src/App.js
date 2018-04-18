@@ -8,12 +8,10 @@ import About from './container/about'
 import Contact from './container/contact'
 import Login from './container/login'
 import Dashboard from './container/Dashboard'
+import Register from './container/register'
 import Welcome from './container/welcome'
 import AppBar from 'material-ui/AppBar'
 import MenuItem from 'material-ui/MenuItem';
-import Register from './container/register'
-
-
 
 const Link=()=>{
     return(
@@ -26,7 +24,6 @@ const Link=()=>{
     )
 }
 const PublicRoute=(props)=>{
-    debugger;
     return(
     !localStorage.getItem('user')?
       <div>
@@ -36,33 +33,32 @@ const PublicRoute=(props)=>{
               <NavLink to="/contact"> <MenuItem primaryText="Contact" /></NavLink>
               <NavLink to="/register"><MenuItem onClick={props.onToggle} primaryText="Register" /></NavLink>
               <NavLink to="/login"> <MenuItem primaryText="Sign up" /></NavLink>
-
-
           </AppBar>
-
           <Route {...props}/>
           <Footer/></div>:
         <Redirect to="/home"/>
     )
 }
 const PrivateRoute=(props)=>{
-    return(localStorage.getItem('user')?<div>
-        <Header/><Dashboard/><Route {...props}/></div> : <Redirect to="/"/>)
+    return(
+        localStorage.getItem('user')?
+        <div>
+        <Header/>
+        <Dashboard/>
+        <Route {...props}/>
+        </div> :
+        <Redirect to="/"/>
+    )
 }
 class App extends Component {
     constructor(props){
         super(props)
-        this.state={
-            isActive:false
-        }
+        this.state={isActive:false}
     }
     toggle=()=>{
-        debugger
         this.setState({isActive: !this.state.isActive})
     }
   render() {
-        debugger;
-      console.log(this.state.isActive);
       return (
       <div className="App">
           <Switch>
@@ -77,5 +73,4 @@ class App extends Component {
     );
   }
 }
-
 export default withRouter(App);
